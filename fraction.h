@@ -49,7 +49,6 @@ private:
 		number(int x, int y, unsigned int z = 1);
 
 		number operator+(number n);
-		number operator+(int x);
 		number operator-(number n);
 		number operator-();
 
@@ -66,12 +65,15 @@ public:
 	{
 		for (number n : nArr)
 		{
-			if (n.denom == 0 || n.num == 0 || n.root == 0) std::cout << 0 << std::endl; 
-			if (n.sign == 1) std::cout << '+';
-			else if (n.sign == -1) std::cout << '-';
-			std::cout << n.num << '/' << n.denom;
-			if (n.root != 1) std::cout << "(root)" << n.root;
-			std::cout << ' ';
+			if (n.num == 0 || n.root == 0) std::cout << 0;
+			else
+			{
+				if (n.sign == 1) std::cout << '+';
+				else if (n.sign == -1) std::cout << '-';
+				if (n.denom == 1) std::cout << n.num;
+				else std::cout << n.num << '/' << n.denom;
+				if (n.root != 1) std::cout << "(root)" << n.root;
+			}
 		}
 		std::cout << std::endl;
 	}
@@ -79,8 +81,9 @@ public:
 
 
 	fraction operator+(const fraction& frac);
+	fraction operator+(int n);
 	fraction operator-(const fraction& frac);
-
+	fraction operator-(int n);
 	fraction operator*(const fraction& frac);
 	fraction operator/(const fraction& frac);
 

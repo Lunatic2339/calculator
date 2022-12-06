@@ -43,6 +43,20 @@ fraction fraction::operator+(const fraction& frac)
 	return result;
 }
 
+fraction fraction::operator+(int n)
+{
+	fraction result = *this;
+	number n1(1, n, 1);
+	int con = 0;
+	for (number& m : result.nArr)
+	{
+		if (m.root == 1) m = m + n1;
+		else ++con;
+	}
+	if (con == result.nArr.size()) result.nArr.push_back(n1);
+	return result;
+}
+
 fraction fraction::operator-(const fraction& frac)
 {
 	fraction result = *this;
@@ -56,6 +70,20 @@ fraction fraction::operator-(const fraction& frac)
 		}
 		if (con == result.nArr.size()) result.nArr.push_back(-n);
 	}
+	return result;
+}
+
+fraction fraction::operator-(int n)
+{
+	fraction result = *this;
+	number n1(1, n, 1);
+	int con = 0;
+	for (number& m : result.nArr)
+	{
+		if (m.root == 1) m = m - n1;
+		else ++con;
+	}
+	if (con == result.nArr.size()) result.nArr.push_back(n1);
 	return result;
 }
 
@@ -129,13 +157,37 @@ fraction::number fraction::number::operator+(number n)
 	else throw "not same root value";
 }
 
+
 fraction::number fraction::number::operator-(number n)
 {
 	if (this->root == n.root)
 	{
-		int x = gcd(this->denom * n.denom, this->num * n.denom - n.num * this->denom);
-		number result((this->denom * n.denom) / x, (this->num * n.denom + n.num * this->denom) / x, this->root);
+		if (this->sign == 1 && n.sign == 1)
+		{
+			int x = gcd(this->denom * n.denom, this->num * n.denom - n.num * this->denom);
+			number result((this->denom * n.denom) / x, (this->num * n.denom - n.num * this->denom) / x, this->root);
+			return result;
+		}
+		else if (this->sign == 1 && n.sign == -1)
+		{
+			int x = gcd(this->denom * n.denom, this->num * n.denom + n.num * this->denom);
+			number result((this->denom * n.denom) / x, (this->num * n.denom + n.num * this->denom) / x, this->root);
+			return result;
+		}
+		else if (this->sign == -1 && n.sign == 1)
+		{
+			int x = gcd(this->denom * n.denom, - n.num * this->denom - this->num * n.denom);
+			number result((this->denom * n.denom) / x, (- n.num * this->denom - this->num * n.denom) / x, this->root);
+			return result;
+		}
+		else if (this->sign == -1 && n.sign == -1)
+		{
+			int x = gcd(this->denom * n.denom, - this->num * n.denom + n.num * this->denom);
+			number result((this->denom * n.denom) / x, (-this->num * n.denom + n.num * this->denom) / x, this->root);
+			return result;
+		}
 	}
+
 	else throw "not same root value";
 }
 
