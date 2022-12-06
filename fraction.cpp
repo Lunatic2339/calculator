@@ -3,7 +3,7 @@
 // fraction class default constructor
 fraction::fraction()
 {
-	nArr.push_back(number(0,0,0));
+	nArr.push_back(number(1,0,0));
 }
 
 //  fraction class custom constructor 1
@@ -68,7 +68,7 @@ fraction fraction::operator-(const fraction& frac)
 			if (n.root == m.root) m = m - n;
 			else ++con;
 		}
-		if (con == result.nArr.size()) result.nArr.push_back(-n);
+		if (con == result.nArr.size()) result.nArr.push_back(number(1,0,n.root) - n);
 	}
 	return result;
 }
@@ -76,11 +76,11 @@ fraction fraction::operator-(const fraction& frac)
 fraction fraction::operator-(int n)
 {
 	fraction result = *this;
-	number n1(1, n, 1);
+	number n1(1, -n, 1);
 	int con = 0;
 	for (number& m : result.nArr)
 	{
-		if (m.root == 1) m = m - n1;
+		if (m.root == 1) m = m + n1;
 		else ++con;
 	}
 	if (con == result.nArr.size()) result.nArr.push_back(n1);
@@ -119,8 +119,8 @@ fraction::number::number()
 fraction::number::number(int x, int y, unsigned int z)
 	: denom(abs_val(x)), num(abs_val(y)), root(z)
 {
-	if (x * y > 0) sign = 1;
-	else if (x * y < 0) sign = -1;
+	if (x * y >= 0) sign = 1;
+	else sign = -1;
 }
 
 // number inner class '+' operator overloading
@@ -191,8 +191,33 @@ fraction::number fraction::number::operator-(number n)
 	else throw "not same root value";
 }
 
-fraction::number fraction::number::operator-()
+fraction::number fraction::number::operator*(number n)
 {
-	return number();
+	std::vector<int> factor = intFactor(this->root * n.root);
+	std::vector<int> factorcheck;
+	factorcheck.push_back(factor.at(0));
+	for (int i = 1; i < factor.size(); ++i)
+	{
+		int duple = 0;
+		for (int j : factorcheck)
+		{
+			if (i == j) 
+			{
+				n.num = n.num * factor.at(i);
+				factor.erase(factor.begin() + i);
+				--i;
+			}
+		}
+		if (duple == factorcheck.size()) factorcheck.push_back(i);
+	}
+	int newroot = 1;
+	for (int i : factor) newroot = newroot * i;
+
+	int x = gcd(this->denom * n.denom, this->num * n.num);
+	number result((this->denom * n.denom) / x, (this->num * n.num) / x, newroot);
+	result.sign = this->sign * n.sign;
+	
+	return result;
 }
+
 

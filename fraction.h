@@ -50,7 +50,8 @@ private:
 
 		number operator+(number n);
 		number operator-(number n);
-		number operator-();
+		number operator*(number n);
+
 
 	};
 	std::vector<number> nArr;
@@ -72,7 +73,7 @@ public:
 				else if (n.sign == -1) std::cout << '-';
 				if (n.denom == 1) std::cout << n.num;
 				else std::cout << n.num << '/' << n.denom;
-				if (n.root != 1) std::cout << "(root)" << n.root;
+				if (n.root != 1) std::cout << "root" << n.root;
 			}
 		}
 		std::cout << std::endl;
