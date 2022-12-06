@@ -43,6 +43,19 @@ fraction fraction::operator+(const fraction& frac)
 	return result;
 }
 
+fraction fraction::operator+(int n)
+{
+	fraction result = *this;
+	int con = 0;
+	for (number& m : result.nArr)
+	{
+		if (m.root == 1) m.num = m.num + n * m.denom;
+		else ++con;
+	}
+	if (con == result.nArr.size()) result.nArr.push_back(number(1, n, 1));
+	return result;
+}
+
 fraction fraction::operator-(const fraction& frac)
 {
 	fraction result = *this;
@@ -128,6 +141,7 @@ fraction::number fraction::number::operator+(number n)
 
 	else throw "not same root value";
 }
+
 
 fraction::number fraction::number::operator-(number n)
 {

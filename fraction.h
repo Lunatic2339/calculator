@@ -49,7 +49,6 @@ private:
 		number(int x, int y, unsigned int z = 1);
 
 		number operator+(number n);
-		number operator+(int x);
 		number operator-(number n);
 		number operator-();
 
@@ -79,6 +78,7 @@ public:
 
 
 	fraction operator+(const fraction& frac);
+	fraction operator+(int n);
 	fraction operator-(const fraction& frac);
 
 	fraction operator*(const fraction& frac);
