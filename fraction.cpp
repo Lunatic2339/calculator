@@ -80,11 +80,6 @@ fraction fraction::operator-(const fraction& frac)
 
 
 
-
-
-
-
-
 // number inner class default constrctor
 fraction::number::number()
 	: denom(0), num(0), root(0)
