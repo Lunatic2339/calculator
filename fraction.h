@@ -66,7 +66,7 @@ public:
 	{
 		for (number n : nArr)
 		{
-			if (n.denom == 0 || n.num == 0 || n.root == 0) std::cout << 0 << std::endl;
+			if (n.denom == 0 || n.num == 0 || n.root == 0) std::cout << 0 << std::endl; 
 			if (n.sign == 1) std::cout << '+';
 			else if (n.sign == -1) std::cout << '-';
 			std::cout << n.num << '/' << n.denom;
