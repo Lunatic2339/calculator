@@ -3,10 +3,10 @@
 #include "fraction.h"
 #include <vector>
 
+#include <iostream>
+
 #define VVF std::vector<std::vector<fraction>>
 #define VF std::vector<fraction>
-
-using std::vector;
 
 class matrix
 {
