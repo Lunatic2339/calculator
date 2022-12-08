@@ -30,6 +30,79 @@ fraction::fraction(int n, int d)
 
 fraction fraction::operator+(const fraction& fr)
 {
-	int x = gcd(this->numerator * fr.denominator + fr.numerator * this->denominator, this->denominator * fr.denominator);
-	return fraction((this->numerator * fr.denominator + fr.numerator * this->denominator)/x, (this->denominator * fr.denominator, true)/x);
+	int x = gcd(numerator * fr.denominator + fr.numerator * denominator, denominator * fr.denominator);
+	return fraction((numerator * fr.denominator + fr.numerator * denominator)/x, (denominator * fr.denominator)/x, true);
 }
+
+fraction fraction::operator+(int i)
+{
+	return fraction(numerator + i * denominator, denominator, true);
+}
+
+fraction fraction::operator++()
+{
+	numerator += denominator;
+	return *this;
+}
+
+fraction fraction::operator++(int)
+{
+	fraction result = *this;
+	numerator += denominator;
+	return result;
+}
+
+fraction fraction::operator-(const fraction& fr)
+{
+	int x = gcd(numerator * fr.denominator - fr.numerator * denominator, denominator * fr.denominator);
+	return fraction((numerator * fr.denominator - fr.numerator * denominator)/x, (denominator * fr.denominator)/x, true);
+}
+
+fraction fraction::operator-(int i)
+{
+	return fraction(numerator - i * denominator, denominator, true);
+}
+
+fraction fraction::operator-()
+{
+	return fraction(-numerator, denominator, true);
+}
+
+fraction fraction::operator--()
+{
+	numerator -= denominator;
+	return *this;
+}
+
+fraction fraction::operator--(int)
+{
+	fraction result = *this;
+	numerator -= denominator;
+	return result;
+}
+
+fraction fraction::operator*(const fraction& fr)
+{
+	int x = gcd(numerator * fr.numerator, denominator * fr.denominator);
+	return fraction((numerator * fr.numerator)/x,(denominator * fr.denominator)/x,true);
+}
+
+fraction fraction::operator*(int i)
+{
+	int x = gcd(numerator * i, denominator);
+	return fraction((numerator*i)/x, denominator/x, true);
+}
+
+fraction fraction::operator/(const fraction& fr)
+{
+	int x = (denominator * fr.numerator, numerator * fr.denominator);
+	return fraction((denominator * fr.numerator)/x, (numerator * fr.denominator)/x, true);
+}
+
+fraction fraction::operator/(int i)
+{
+	int x = gcd(numerator, denominator * i);
+	return fraction(numerator/x, (denominator*i)/x, true);
+}
+
+
