@@ -15,6 +15,101 @@ matrix::matrix(int row, int col, fraction fr)
 {
 }
 
+matrix::matrix(int rowcol, int n)
+	: m_v(VVF(rowcol, VF(rowcol, fraction(0)))), row(rowcol), col(rowcol)
+{
+	for (int i = 0; i < rowcol; ++i)
+	{
+		m_v[i][i] = fraction(n);
+	}
+}
+
+matrix::matrix(int rowcol, fraction fr)
+	: m_v(VVF(rowcol, VF(rowcol, fraction(0)))), row(rowcol), col(rowcol)
+{
+	for (int i = 0; i < rowcol; ++i)
+	{
+		m_v[i][i] = fr;
+	}
+}
+
+matrix matrix::power(int n)
+{
+	matrix result = *this;
+	for (int i = 0; i < n; ++i)
+	{
+		result = result * result;
+	}
+	return result;
+}
+
+matrix matrix::tr()
+{
+	matrix result(col, row);
+	for (int i = 0; i < row; ++i)
+	{
+		for (int j = 0; j < col; ++j)
+		{
+			result.m_v[j][i] = this->m_v[i][j];
+		}
+	}
+	return result;
+}
+
+matrix matrix::sub(int r, int c)
+{
+	matrix result(row - 1, col - 1, 0);
+	for (int i = 0; i < row; ++i)
+	{
+		for (int j = 0; j < col; ++j)
+		{
+			if (i != r || j != c)
+			{
+				result.m_v[i][j] = m_v[i][j];
+			}
+		}
+	}
+	return result;
+}
+
+
+fraction matrix::det()
+{
+	try
+	{
+		if (row != col) throw 0;
+		else
+		{
+			if (row == 1) return m_v[1][1];
+			else if (row == 2)
+			{
+				return (m_v[0][0] * m_v[1][1] - m_v[0][1] * m_v[1][0]);
+			}
+			else if (row > 2)
+			{
+				fraction result(0);
+				for (int i = 0; i < col; ++i)
+				{
+					
+					if (i % 2 == 0)
+					{
+						result = result + m_v[0][i] * this->sub(0, col).det();
+					}
+					else
+					{
+						result = result - m_v[0][i] * this->sub(0, col).det();
+					}
+				}
+				return result;
+			}
+		}
+	}
+	catch (int zero)
+	{
+		std::cout << "Not Square Matrix!" << std::endl;
+	}
+}
+
 matrix matrix::operator+(matrix m)
 {
 	matrix result = *this;
@@ -128,15 +223,16 @@ matrix matrix::operator*(matrix m)
 			result.m_v = VVF(row, VF(m.col));
 			for (int i = 0; i < row; ++i)
 			{
-				fraction fx;
-				for (int a = 0; a < col; ++a)
-				{
-					fx = fx + m_v[i][a];
-				}
+
 				for (int j = 0; j < m.col; ++j)
 				{
-					
-					result.m_v[i][j];
+					fraction fr;
+					fr.set(0, 1);
+					for (int a = 0; a < col; ++a)
+					{
+						fr = fr + m_v[i][a]*m.m_v[a][j];
+					}
+					result.m_v[i][j] = fr;
 				}
 			}
 		}
@@ -144,7 +240,7 @@ matrix matrix::operator*(matrix m)
 	}
 	catch (int zero)
 	{
-		std::cout << "Not Same Matrix Size : (" << row << 'x' << col << ')' << std::endl;
+		std::cout << "error" << std::endl;
 	}
 	return result;
 }

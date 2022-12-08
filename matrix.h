@@ -1,12 +1,14 @@
 #pragma once
 
 #include "fraction.h"
-#include <vector>
 
+#include <vector>
 #include <iostream>
+
 
 #define VVF std::vector<std::vector<fraction>>
 #define VF std::vector<fraction>
+#define PMM std::pair<matrix, matrix>
 
 class matrix
 {
@@ -16,8 +18,17 @@ private:
 	int col;
 public:
 	matrix();
-	matrix(int row, int col, int num = 0);
+	matrix(int row, int col, int num);
 	matrix(int row, int col, fraction num);
+	matrix(int rowcol, int n = 1);
+	matrix(int rowcol, fraction fr);
+
+	matrix power(int n);
+	matrix tr();
+	matrix sub(int r, int c);
+	matrix adj();
+
+	fraction det();
 
 	matrix operator+(matrix m);
 	matrix operator+(int n);
