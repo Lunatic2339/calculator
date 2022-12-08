@@ -21,17 +21,22 @@ public:
 
 	fraction operator+(const fraction& fr);
 	fraction operator+(int i);
-	fraction operator++();
+	fraction& operator++();
 	fraction operator++(int);
 	fraction operator-(const fraction& fr);
 	fraction operator-(int i);
 	fraction operator-();
-	fraction operator--();
+	fraction& operator--();
 	fraction operator--(int);
 	fraction operator*(const fraction& fr);
 	fraction operator*(int i);
 	fraction operator/(const fraction& fr);
 	fraction operator/(int i);
+	fraction& operator+=(const fraction& fr);
+	fraction& operator-=(const fraction& fr);
+	fraction& operator*=(const fraction& fr);
+	fraction& operator/=(const fraction& fr);
+
 
 	bool operator==(const fraction& fr);
 	bool operator!=(const fraction& fr);

@@ -70,7 +70,7 @@ fraction fraction::operator+(int i)
 	return fraction(numerator + i * denominator, denominator, true);
 }
 
-fraction fraction::operator++()
+fraction& fraction::operator++()
 {
 	numerator += denominator;
 	return *this;
@@ -99,7 +99,7 @@ fraction fraction::operator-()
 	return fraction(-numerator, denominator, true);
 }
 
-fraction fraction::operator--()
+fraction& fraction::operator--()
 {
 	numerator -= denominator;
 	return *this;
@@ -151,6 +151,30 @@ fraction fraction::operator/(int i)
 		std::cout << "ERROR! fraction (" << numerator << ", " << denominator << ") divided by " << zero << std::endl;
 	}
 
+}
+
+fraction& fraction::operator+=(const fraction& fr)
+{
+	*this = *this + fr;
+	return *this;
+}
+
+fraction& fraction::operator-=(const fraction& fr)
+{
+	*this = *this - fr;
+	return *this;
+}
+
+fraction& fraction::operator*=(const fraction& fr)
+{
+	*this = *this * fr;
+	return *this;
+}
+
+fraction& fraction::operator/=(const fraction& fr)
+{
+	*this = *this / fr;
+	return *this;
 }
 
 bool fraction::operator==(const fraction& fr)
