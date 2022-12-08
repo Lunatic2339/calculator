@@ -9,6 +9,8 @@ private:
 	int denominator;
 
 	int gcd(int a, int b);
+	int abs(int a);
+
 	fraction(int n, int d, bool b);
 public:
 	fraction();
@@ -37,7 +39,6 @@ public:
 	bool operator<(const fraction& fr);
 	bool operator>=(const fraction& fr);
 	bool operator<=(const fraction& fr);
-
 
 	friend std::ostream& operator<<(std::ostream& os, const fraction& fr);
 	friend std::istream& operator>>(std::istream& is, fraction& fr);

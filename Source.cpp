@@ -4,10 +4,12 @@
 
 using namespace std;
 
+int gcd(int a, int b)
+{
+	if (b == 0) return a;
+	else return gcd(b, a % b);
+}
+
 int main()
 {
-	fraction fr1(3, 2);
-	cout << fr1;
-	fr1 = fr1 + 1;
-	cout << fr1;
 }

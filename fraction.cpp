@@ -6,6 +6,12 @@ int fraction::gcd(int a, int b)
 	else return gcd(b, a % b);
 }
 
+int fraction::abs(int a)
+{
+	if (a < 0) a = -a;
+	return a;
+}
+
 fraction::fraction(int n, int d, bool b)
 	: numerator(n), denominator(d)
 {
@@ -32,6 +38,8 @@ fraction::fraction(int n, int d)
 	}
 	catch (int zero)
 	{
+		numerator = 0;
+		denominator = 1;
 		std::cout << "ERROR! fraction (" << n << ", " << d << ") divided by " << zero << std::endl;
 	}
 }
@@ -118,8 +126,16 @@ fraction fraction::operator*(int i)
 
 fraction fraction::operator/(const fraction& fr)
 {
-	int x = (denominator * fr.numerator, numerator * fr.denominator);
-	return fraction((denominator * fr.numerator)/x, (numerator * fr.denominator)/x, true);
+	try
+	{
+		if (fr.numerator == 0) throw 0;
+		int x = (denominator * fr.numerator, numerator * fr.denominator);
+		return fraction((denominator * fr.numerator) / x, (numerator * fr.denominator) / x, true);
+	}
+	catch (int zero)
+	{
+		std::cout << "ERROR! fraction (" << numerator << ", " << denominator << ") divided by " << zero << std::endl;
+	}
 }
 
 fraction fraction::operator/(int i)
@@ -137,6 +153,43 @@ fraction fraction::operator/(int i)
 
 }
 
+bool fraction::operator==(const fraction& fr)
+{
+	if (numerator / denominator == fr.numerator / fr.denominator) return true;
+	return false;
+}
+
+bool fraction::operator!=(const fraction& fr)
+{
+	if (numerator / denominator != fr.numerator / fr.denominator) return true;
+	return false;
+}
+
+bool fraction::operator>(const fraction& fr)
+{
+	if (numerator / denominator > fr.numerator / fr.denominator) return true;
+	return false;
+}
+
+bool fraction::operator<(const fraction& fr)
+{
+	if (numerator / denominator < fr.numerator / fr.denominator) return true;
+	return false;
+}
+
+bool fraction::operator>=(const fraction& fr)
+{
+	if (numerator / denominator >= fr.numerator / fr.denominator) return true;
+	return false;
+}
+
+bool fraction::operator<=(const fraction& fr)
+{
+	if (numerator / denominator <= fr.numerator / fr.denominator) return true;
+	return false;
+}
+
+
 std::ostream& operator<<(std::ostream& os, const fraction& fr)
 {
 	if (fr.denominator == 0)
@@ -153,13 +206,10 @@ std::ostream& operator<<(std::ostream& os, const fraction& fr)
 		{
 			if (fr.denominator * fr.numerator > 0) os << '+';
 			else os << '-';
-			if (fr.numerator > 0) os << fr.numerator;
-			else os << -fr.numerator;
+			os << abs(fr.numerator);
 			if (fr.denominator != 1)
 			{
-				os << '/';
-				if (fr.denominator > 0) os << fr.denominator;
-				else os << -fr.denominator;
+				os << '/' << abs(fr.denominator);
 			}
 		}
 	}
