@@ -8,6 +8,6 @@ int main()
 {
 	fraction fr1(3, 2);
 	cout << fr1;
-	cin >> fr1;
+	fr1 = fr1 + 1;
 	cout << fr1;
 }

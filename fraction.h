@@ -30,7 +30,15 @@ public:
 	fraction operator*(int i);
 	fraction operator/(const fraction& fr);
 	fraction operator/(int i);
-	
+
+	bool operator==(const fraction& fr);
+	bool operator!=(const fraction& fr);
+	bool operator>(const fraction& fr);
+	bool operator<(const fraction& fr);
+	bool operator>=(const fraction& fr);
+	bool operator<=(const fraction& fr);
+
+
 	friend std::ostream& operator<<(std::ostream& os, const fraction& fr);
 	friend std::istream& operator>>(std::istream& is, fraction& fr);
 };
