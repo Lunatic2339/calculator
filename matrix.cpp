@@ -128,11 +128,14 @@ matrix matrix::operator*(matrix m)
 			result.m_v = VVF(row, VF(m.col));
 			for (int i = 0; i < row; ++i)
 			{
-				int x = 
+				fraction fx;
+				for (int a = 0; a < col; ++a)
+				{
+					fx = fx + m_v[i][a];
+				}
 				for (int j = 0; j < m.col; ++j)
 				{
-					int x = 0;
-					for (int k = 0)
+					
 					result.m_v[i][j];
 				}
 			}
