@@ -268,12 +268,12 @@ matrix matrix::operator*(matrix m)
 		else
 		{
 			result.m_v = VVF(row, VF(m.col));
+			fraction fr;
 			for (int i = 0; i < row; ++i)
 			{
 
 				for (int j = 0; j < m.col; ++j)
 				{
-					fraction fr;
 					fr.set(0, 1);
 					for (int a = 0; a < col; ++a)
 					{
