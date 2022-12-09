@@ -46,6 +46,6 @@ public:
 	matrix operator/(fraction fr);
 
 	friend std::ostream& operator<<(std::ostream& os, const matrix& m);
-	friend std::ostream& operator>>(std::istream& is, matrix& m);
+	friend std::istream& operator>>(std::istream& is, matrix& m);
 
 };

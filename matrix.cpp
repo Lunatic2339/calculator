@@ -357,7 +357,7 @@ std::ostream& operator<<(std::ostream& os, const matrix& m)
 	return os;
 }
 
-std::ostream& operator>>(std::istream& is, matrix& m)
+std::istream& operator>>(std::istream& is, matrix& m)
 {
 	for (VF& vf : m.m_v)
 	{
@@ -366,4 +366,5 @@ std::ostream& operator>>(std::istream& is, matrix& m)
 			is >> f;
 		}
 	}
+	return is;
 }
