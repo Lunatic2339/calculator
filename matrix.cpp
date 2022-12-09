@@ -344,4 +344,26 @@ matrix matrix::operator/(fraction fr)
 	return result;
 }
 
+std::ostream& operator<<(std::ostream& os, const matrix& m)
+{
+	for (VF vf : m.m_v)
+	{
+		for (fraction f : vf)
+		{
+			os << f << ' ';
+		}
+		os << std::endl;
+	}
+	return os;
+}
 
+std::ostream& operator>>(std::istream& is, matrix& m)
+{
+	for (VF& vf : m.m_v)
+	{
+		for (fraction& f : vf)
+		{
+			is >> f;
+		}
+	}
+}
