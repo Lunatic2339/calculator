@@ -15,7 +15,7 @@ matrix::matrix(int row, int col, fraction fr)
 {
 }
 
-matrix::matrix(int rowcol, int n)
+matrix::matrix(int rowcol, int n, bool idt)
 	: m_v(VVF(rowcol, VF(rowcol, fraction(0)))), row(rowcol), col(rowcol)
 {
 	for (int i = 0; i < rowcol; ++i)
@@ -24,7 +24,7 @@ matrix::matrix(int rowcol, int n)
 	}
 }
 
-matrix::matrix(int rowcol, fraction fr)
+matrix::matrix(int rowcol, fraction fr, bool idt)
 	: m_v(VVF(rowcol, VF(rowcol, fraction(0)))), row(rowcol), col(rowcol)
 {
 	for (int i = 0; i < rowcol; ++i)
@@ -63,13 +63,48 @@ matrix matrix::sub(int r, int c)
 	{
 		for (int j = 0; j < col; ++j)
 		{
-			if (i != r || j != c)
+			if (i != r-1 || j != c-1)
 			{
 				result.m_v[i][j] = m_v[i][j];
 			}
 		}
 	}
 	return result;
+}
+
+matrix matrix::adj()
+{
+	try
+	{
+		if (row != col) throw 0;
+		matrix result(row, col);
+		for (int i = 0; i < row; ++i)
+		{
+			for (int j = 0; j < col; ++j)
+			{
+				result.m_v[i][j] = cof(j+1,i+1);
+			}
+		}
+	}
+	catch (int zero)
+	{
+		std::cout << "Not Square Matrix!" << std::endl;
+	}
+}
+
+matrix matrix::inverse()
+{
+	try
+	{
+		if (det() == fraction(0)) throw 0;
+		matrix result = adj() / det();
+		return result;
+	}
+	catch (int zero)
+	{
+		std::cout << "divide by zero" << std::endl;
+		return *this;
+	}
 }
 
 
@@ -107,6 +142,18 @@ fraction matrix::det()
 	catch (int zero)
 	{
 		std::cout << "Not Square Matrix!" << std::endl;
+	}
+}
+
+fraction matrix::cof(int r, int c)
+{
+	if (r + c % 2 == 0) 
+	{
+		return sub(r, c).det();
+	}
+	else
+	{
+		return -sub(r, c).det();
 	}
 }
 
@@ -253,6 +300,45 @@ matrix matrix::operator*(int k)
 		for (fraction& f : vf)
 		{
 			f = f * k;
+		}
+	}
+	return result;
+}
+
+matrix matrix::operator*(fraction fr)
+{
+	matrix result = *this;
+	for (VF& vf : result.m_v)
+	{
+		for (fraction& f : vf)
+		{
+			f = f * fr;
+		}
+	}
+	return result;
+}
+
+matrix matrix::operator/(int k)
+{
+	matrix result = *this;
+	for (VF& vf : result.m_v)
+	{
+		for (fraction& f : vf)
+		{
+			f = f / k;
+		}
+	}
+	return result;
+}
+
+matrix matrix::operator/(fraction fr)
+{
+	matrix result = *this;
+	for (VF& vf : result.m_v)
+	{
+		for (fraction& f : vf)
+		{
+			f = f / fr;
 		}
 	}
 	return result;
