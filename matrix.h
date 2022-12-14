@@ -28,6 +28,8 @@ public:
 	matrix sub(int r, int c);
 	matrix adj();
 	matrix inverse();
+	std::pair<matrix, matrix> LUdecompose();
+
 
 
 	fraction det();

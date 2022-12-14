@@ -1,15 +1,17 @@
 #include <iostream>
 
 #include "fraction.h"
-
+#include "matrix.h"
 using namespace std;
 
-int gcd(int a, int b)
-{
-	if (b == 0) return a;
-	else return gcd(b, a % b);
-}
+
 
 int main()
 {
+
+	m.m_v[1][2];
+	matrix m(3, 3);
+	cin >> m;
+
+	cout << m;
 }

@@ -359,11 +359,12 @@ std::ostream& operator<<(std::ostream& os, const matrix& m)
 
 std::istream& operator>>(std::istream& is, matrix& m)
 {
-	for (VF& vf : m.m_v)
+	std::cout << "size " << m.row << 'x' << m.col << std::endl;
+	for (int i = 0; i < m.m_v.size(); ++i)
 	{
-		for (fraction& f : vf)
+		for (int j = 0; j < m.m_v[i].size(); ++j)
 		{
-			is >> f;
+			is >> m.m_v[i][j];
 		}
 	}
 	return is;

@@ -1,5 +1,7 @@
 #include "fraction.h"
 
+#include <string.h>
+
 int fraction::gcd(int a, int b)
 {
 	if (b == 0) return a;
