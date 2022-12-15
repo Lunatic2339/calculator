@@ -1,6 +1,8 @@
 #include "fraction.h"
 
-#include <string.h>
+#include <string>
+#include <sstream>
+#include <vector>
 
 int fraction::gcd(int a, int b)
 {
@@ -215,7 +217,6 @@ bool fraction::operator<=(const fraction& fr)
 	return false;
 }
 
-
 std::ostream& operator<<(std::ostream& os, const fraction& fr)
 {
 	if (fr.denominator == 0)
@@ -245,12 +246,21 @@ std::ostream& operator<<(std::ostream& os, const fraction& fr)
 std::istream& operator>>(std::istream& is, fraction& fr)
 {
 
-	int n = 0, d = 0;
-	is >> n >> d;
-	if (d != 0)
+	std::string number;
+	is >> number;
+	fr.denominator = 1;
+	std::vector<std::string> result;
+	std::stringstream ss(number);
+	std::string temp;
+	while (std::getline(ss, temp, '/')) {
+		result.push_back(temp);
+	}
+	std::stringstream ssInt(result[0]);
+	ssInt >> fr.numerator;
+	if (result.size() == 2)
 	{
-		fr.numerator = n;
-		fr.denominator = d;
+		std::stringstream ssInt2(result[1]);
+		ssInt2 >> fr.denominator;
 	}
 	return is;
 }
