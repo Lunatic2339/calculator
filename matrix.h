@@ -34,6 +34,9 @@ public:
 
 	fraction det();
 	fraction cof(int r, int c);
+	matrix echelon();//기약행 사다리꼴
+
+	int front(int col);//0이 아닌 열의 시작을 찾음
 
 	matrix operator+(matrix m);
 	matrix operator+(int n);
