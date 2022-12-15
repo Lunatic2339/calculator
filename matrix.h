@@ -23,16 +23,23 @@ public:
 	matrix(int rowcol, int n, bool idt);
 	matrix(int rowcol, fraction fr, bool idt);
 
+
+	//제곱
 	matrix power(int n);
+	//전치행렬
 	matrix tr();
+	//소행렬
 	matrix sub(int r, int c);
+	//수반행렬
 	matrix adj();
+	//역행렬
 	matrix inverse();
 	std::pair<matrix, matrix> LUdecompose();
 
 
-
+	//행렬식
 	fraction det();
+	//여인수
 	fraction cof(int r, int c);
 	matrix echelon();//기약행 사다리꼴
 
@@ -54,3 +61,4 @@ public:
 	friend std::istream& operator>>(std::istream& is, matrix& m);
 
 };
+
