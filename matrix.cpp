@@ -15,6 +15,18 @@ matrix::matrix(int row, int col, fraction fr)
 {
 }
 
+matrix::matrix(int row, int col, fraction fr[]) {
+	matrix result(row, col);
+	int x = 0;
+
+	for (int i = 0; i < row; i++) {
+		for (int j = 0; j < col; j++) {
+			result.m_v[i][j] = fr[x];
+			x++;
+		}
+	}
+}
+
 matrix::matrix(int rowcol, int n, bool idt)
 	: m_v(VVF(rowcol, VF(rowcol, fraction(0)))), row(rowcol), col(rowcol)
 {
