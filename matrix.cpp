@@ -36,7 +36,7 @@ matrix::matrix(int rowcol, fraction fr, bool idt)
 matrix matrix::power(int n)
 {
 	matrix result = *this;
-	for (int i = 0; i < n; ++i)
+	for (int i = 1; i < n; ++i)
 	{
 		result = result * result;
 	}
@@ -59,15 +59,24 @@ matrix matrix::tr()
 matrix matrix::sub(int r, int c)
 {
 	matrix result(row - 1, col - 1, 0);
+	int ii = 0;
 	for (int i = 0; i < row; ++i)
 	{
+		int jj = 0;
 		for (int j = 0; j < col; ++j)
 		{
-			if (i != r-1 || j != c-1)
+			
+			if (i == (r - 1) || j == (c - 1))
 			{
-				result.m_v[i][j] = m_v[i][j];
+
 			}
+			else 
+			{
+				result.m_v[ii][jj] = m_v[i][j];
+			}
+			if (j != c - 1) jj++;
 		}
+		if (i != r - 1) ii++;
 	}
 	return result;
 }
@@ -107,6 +116,13 @@ matrix matrix::inverse()
 	}
 }
 
+std::pair<matrix, matrix> matrix::LUdecompose()
+{
+	matrix lower;
+	matrix upper;
+	return std::pair<matrix, matrix>();
+}
+
 
 fraction matrix::det()
 {
@@ -115,7 +131,7 @@ fraction matrix::det()
 		if (row != col) throw 0;
 		else
 		{
-			if (row == 1) return m_v[1][1];
+			if (row == 1) return m_v[0][0];
 			else if (row == 2)
 			{
 				return (m_v[0][0] * m_v[1][1] - m_v[0][1] * m_v[1][0]);
@@ -128,11 +144,11 @@ fraction matrix::det()
 					
 					if (i % 2 == 0)
 					{
-						result = result + m_v[0][i] * this->sub(0, col).det();
+						result = result + m_v[0][i] * (this->sub(1, i+1).det());
 					}
 					else
 					{
-						result = result - m_v[0][i] * this->sub(0, col).det();
+						result = result - m_v[0][i] * (this->sub(1, i+1).det());
 					}
 				}
 				return result;
