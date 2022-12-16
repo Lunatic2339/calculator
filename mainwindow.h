@@ -20,6 +20,6 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    QString a1;
+    QString b[0];
 };
 #endif // MAINWINDOW_H

@@ -20,9 +20,9 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::on_pushButton_clicked(){
-    fraction b[3*3];
-    matrix a(3, 3, b);
-    int a1 = ui->lineEdit->displayText().toInt();
+    std::vector<fraction> b[9];
+    matrix a = (b, 3, 3);
+    int b[0] = ui->lineEdit->displayText().toInt();
 
-    std::cout << a.power(a1);
+    std::cout << a.power(b[0]);
 }
