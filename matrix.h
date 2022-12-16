@@ -23,6 +23,10 @@ public:
 	matrix(int row, int col, fraction num[]);
 	matrix(int rowcol, int n, bool idt);
 	matrix(int rowcol, fraction fr, bool idt);
+	matrix(std::vector<fraction> vf, int row, int col);
+
+
+	void set_by_vector(std::vector<fraction> vf, int row, int col);
 
 
 	//Á¦°ö

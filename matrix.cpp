@@ -45,6 +45,49 @@ matrix::matrix(int rowcol, fraction fr, bool idt)
 	}
 }
 
+matrix::matrix(std::vector<fraction> vf, int row, int col)
+	: m_v(VVF(row, VF(col))), row(row), col(col)
+{
+	
+	if (row * col != vf.size()) std::cout << "invalid vector size" << std::endl;
+	else
+	{
+		int idx = 0;
+		for (int i = 0; i < row; ++i)
+		{
+			for (int j = 0; j < col; ++j)
+			{
+				m_v[i][j] = vf[idx++];
+			}
+		}
+	}
+}
+
+void matrix::set_by_vector(std::vector<fraction> vf, int r, int c)
+{
+	m_v.resize(r);
+	for (VF& v : m_v)
+	{
+		v.resize(c);
+	}
+	if (r * c != vf.size())
+	{
+		std::cout << "invalid vector size" << std::endl;
+		return;
+	}
+	else
+	{
+		int idx = 0;
+		for (int i = 0; i < row; ++i)
+		{
+			for (int j = 0; j < col; ++j)
+			{
+				m_v[i][j] = vf[idx++];
+			}
+		}
+	}
+}
+
 matrix matrix::power(int n)
 {
 	matrix result = *this;
