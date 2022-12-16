@@ -41,7 +41,7 @@ public:
 	fraction& operator-=(int i);
 	fraction& operator*=(int i);
 	fraction& operator/=(int i);
-
+	fraction& operator=(int i);
 
 	bool operator==(const fraction& fr);
 	bool operator!=(const fraction& fr);

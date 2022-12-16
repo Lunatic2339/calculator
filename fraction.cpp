@@ -139,6 +139,7 @@ fraction fraction::operator/(const fraction& fr)
 	catch (int zero)
 	{
 		std::cout << "ERROR! fraction (" << numerator << ", " << denominator << ") divided by " << zero << std::endl;
+		return *this;
 	}
 }
 
@@ -153,6 +154,7 @@ fraction fraction::operator/(int i)
 	catch (int zero)
 	{
 		std::cout << "ERROR! fraction (" << numerator << ", " << denominator << ") divided by " << zero << std::endl;
+		return *this;
 	}
 
 }
@@ -209,6 +211,13 @@ fraction& fraction::operator/=(int i)
 	{
 		std::cout << "ERROR! divide by zero!" << std::endl;
 	}
+	return *this;
+}
+
+fraction& fraction::operator=(int i)
+{
+	this->numerator = i;
+	this->denominator = 1;
 	return *this;
 }
 

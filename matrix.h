@@ -40,7 +40,7 @@ public:
 	//역행렬
 	matrix inverse();
 
-	std::pair<matrix, matrix> LUdecompose();
+	PMM LUdecompose();
 
 
 	//행렬식
@@ -64,6 +64,8 @@ public:
 	matrix operator/(fraction fr);
 
 	friend std::ostream& operator<<(std::ostream& os, const matrix& m);
+	friend std::ostream& operator<<(std::ostream& os, const std::pair<matrix, matrix>& pmm);
+
 	friend std::istream& operator>>(std::istream& is, matrix& m);
 
 };

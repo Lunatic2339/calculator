@@ -154,6 +154,7 @@ matrix matrix::adj()
 	catch (int zero)
 	{
 		std::cout << "Not Square Matrix!" << std::endl;
+		return *this;
 	}
 }
 
@@ -172,11 +173,47 @@ matrix matrix::inverse()
 	}
 }
 
-std::pair<matrix, matrix> matrix::LUdecompose()
+PMM matrix::LUdecompose()
 {
-	matrix lower;
-	matrix upper;
-	return std::pair<matrix, matrix>();
+	try 
+	{
+		if (row != col) throw 0;
+		matrix lower(row, 1, true);
+		matrix upper(row, col);
+		fraction sigma(0);
+		for (int i = 0; i < row; ++i)
+		{
+			for (int j = 0; j < col; ++j)
+			{
+				if (i > j)  // lower
+				{
+					sigma = 0;
+					for (int k = 0; k < j - 1; ++k)
+					{
+						sigma = sigma + lower.m_v[i][k] * upper.m_v[k][j];
+					}
+					lower.m_v[i][j] = (m_v[i][j] - sigma) / upper.m_v[j][j];
+				}
+				else
+				{
+					sigma = 0;
+					for (int k = 0; k < i - 1; ++k)
+					{
+						sigma = sigma + lower.m_v[i][k] * upper.m_v[k][i];
+					}
+					upper.m_v[i][j] = m_v[i][j] - sigma;
+				}
+			}
+		}
+
+		return PMM(lower, upper);
+	}
+	catch (int zero)
+	{
+		std::cout << "Not Square Matrix!" << std::endl;
+		return PMM(*this, *this);
+	}
+
 }
 
 
@@ -214,6 +251,7 @@ fraction matrix::det()
 	catch (int zero)
 	{
 		std::cout << "Not Square Matrix!" << std::endl;
+		return 0;
 	}
 }
 
@@ -485,6 +523,16 @@ std::ostream& operator<<(std::ostream& os, const matrix& m)
 		}
 		os << std::endl;
 	}
+	return os;
+}
+
+std::ostream& operator<<(std::ostream& os, const std::pair<matrix, matrix>& pmm)
+{
+	os << "Lower matrix below" << std::endl;
+	os << pmm.first;
+	os << "Upper matrix below" << std::endl;
+	os << pmm.second;
+
 	return os;
 }
 
