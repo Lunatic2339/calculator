@@ -157,6 +157,51 @@ fraction matrix::cof(int r, int c)
 	}
 }
 
+matrix matrix::echelon() {
+	matrix result(col, row);
+	int new_m1 = 0;
+	int new_m2 = 0;
+	
+	for (int i=0; i < col; i++) {
+		for (int j=0; i < row; i++) {
+			if (m_v[i][j] == 0) {
+				for (int k = 0; k < row; k++) {
+					result.m_v[col - new_m1 - 1][k] = m_v[i][k];
+				}
+				new_m1++;
+			}
+			else {
+				for (int k = 0; k < row; k++) {
+					result.m_v[new_m2][k] = m_v[i][k];
+				}
+				new_m2++;
+			}
+		}
+	}
+	for (int i = 1; i < col; i++) {
+		if (result.front(0) == result.front(i)) {
+			std::cout << (result.m_v[0][result.front(0)]) / (result.m_v[i][result.front(i)]);
+			for (int j = 0; j < row; j++) {
+				result.m_v[i][j] = result.m_v[0][j] - (result.m_v[i][j] * (result.m_v[0][result.front(0)] / result.m_v[i][result.front(i)]));
+			}
+		}
+	}
+	
+	return result;
+}
+
+int matrix::front(int col) {
+	int front = 0;
+
+	for (int i = 0; i < row; i++) {
+		if (m_v[col][i] != 0) {
+			front = i;
+			break;
+		}
+	}
+	return front;
+}
+
 matrix matrix::operator+(matrix m)
 {
 	matrix result = *this;

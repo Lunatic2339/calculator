@@ -12,7 +12,10 @@ using namespace std;
 
 int main()
 {
-	matrix m(2, 2);
+
+	m.m_v[1][2];
+	matrix m(3, 3);
 	cin >> m;
 	cout << m;
+	cout << m.echelon();
 }
