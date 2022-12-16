@@ -39,7 +39,7 @@ public:
 	matrix adj();
 	//역행렬
 	matrix inverse();
-
+	// LU분해
 	PMM LUdecompose();
 
 
@@ -47,9 +47,10 @@ public:
 	fraction det();
 	//여인수
 	fraction cof(int r, int c);
-	matrix echelon();//기약행 사다리꼴
-
-	int front(int col);//0이 아닌 열의 시작을 찾음
+	//기약행 사다리꼴
+	matrix echelon();
+	//0이 아닌 열의 시작을 찾음
+	int front(int col);
 
 	matrix operator+(matrix m);
 	matrix operator+(int n);
