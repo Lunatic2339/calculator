@@ -94,6 +94,7 @@ matrix matrix::adj()
 				result.m_v[i][j] = cof(j+1,i+1);
 			}
 		}
+		return result;
 	}
 	catch (int zero)
 	{
@@ -163,13 +164,13 @@ fraction matrix::det()
 
 fraction matrix::cof(int r, int c)
 {
-	if (r + c % 2 == 0) 
+	if ((r + c) % 2 == 0) 
 	{
 		return sub(r, c).det();
 	}
 	else
 	{
-		return -sub(r, c).det();
+		return -(sub(r, c).det());
 	}
 }
 

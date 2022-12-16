@@ -16,5 +16,6 @@ int main()
 	matrix m(3, 3);
 	cin >> m;
 	cout << m;
-	cout << m.det();
+	cout << m.det() << endl;
+	cout << m.adj();
 }
