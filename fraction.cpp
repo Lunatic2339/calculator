@@ -181,6 +181,37 @@ fraction& fraction::operator/=(const fraction& fr)
 	return *this;
 }
 
+fraction& fraction::operator+=(int i)
+{
+	*this = *this + i;
+	return *this;
+}
+
+fraction& fraction::operator-=(int i)
+{
+	*this = *this - i;
+	return *this;
+}
+
+fraction& fraction::operator*=(int i)
+{
+	*this = *this * i;
+	return *this;
+}
+
+fraction& fraction::operator/=(int i)
+{
+	if (i != 0)
+	{
+		*this = *this / i;
+	}
+	else
+	{
+		std::cout << "ERROR! divide by zero!" << std::endl;
+	}
+	return *this;
+}
+
 bool fraction::operator==(const fraction& fr)
 {
 	if (numerator / denominator == fr.numerator / fr.denominator) return true;
@@ -214,6 +245,42 @@ bool fraction::operator>=(const fraction& fr)
 bool fraction::operator<=(const fraction& fr)
 {
 	if (numerator / denominator <= fr.numerator / fr.denominator) return true;
+	return false;
+}
+
+bool fraction::operator==(int i)
+{
+	if (*this == fraction(i)) return true;
+	return false;
+}
+
+bool fraction::operator!=(int i)
+{
+	if (*this != fraction(i)) return true;
+	return false;
+}
+
+bool fraction::operator>(int i)
+{
+	if (*this > fraction(i)) return true;
+	return false;
+}
+
+bool fraction::operator<(int i)
+{
+	if (*this < fraction(i)) return true;
+	return false;
+}
+
+bool fraction::operator>=(int i)
+{
+	if (*this >= fraction(i)) return true;
+	return false;
+}
+
+bool fraction::operator<=(int i)
+{
+	if (*this <= fraction(i)) return true;
 	return false;
 }
 

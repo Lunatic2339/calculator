@@ -35,6 +35,7 @@ public:
 	matrix adj();
 	//¿ªÇà·Ä
 	matrix inverse();
+
 	std::pair<matrix, matrix> LUdecompose();
 
 
