@@ -20,6 +20,7 @@ public:
 	matrix();
 	matrix(int row, int col, int num = 0);
 	matrix(int row, int col, fraction num);
+	matrix(int row, int col, fraction num[]);
 	matrix(int rowcol, int n, bool idt);
 	matrix(int rowcol, fraction fr, bool idt);
 
