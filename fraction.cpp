@@ -133,8 +133,8 @@ fraction fraction::operator/(const fraction& fr)
 	try
 	{
 		if (fr.numerator == 0) throw 0;
-		int x = (denominator * fr.numerator, numerator * fr.denominator);
-		return fraction((denominator * fr.numerator) / x, (numerator * fr.denominator) / x, true);
+		int x = gcd(denominator * fr.numerator, numerator * fr.denominator);
+		return fraction((numerator * fr.denominator) / x, (denominator * fr.numerator) / x, true);
 	}
 	catch (int zero)
 	{
