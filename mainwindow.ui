@@ -40,63 +40,63 @@
      <item row="0" column="0">
       <widget class="QLineEdit" name="inputBox1">
        <property name="text">
-        <string/>
+        <string>0</string>
        </property>
       </widget>
      </item>
      <item row="2" column="1">
       <widget class="QLineEdit" name="inputBox8">
        <property name="text">
-        <string/>
+        <string>0</string>
        </property>
       </widget>
      </item>
      <item row="0" column="1">
       <widget class="QLineEdit" name="inputBox2">
        <property name="text">
-        <string/>
+        <string>0</string>
        </property>
       </widget>
      </item>
      <item row="1" column="1">
       <widget class="QLineEdit" name="inputBox5">
        <property name="text">
-        <string/>
+        <string>0</string>
        </property>
       </widget>
      </item>
      <item row="2" column="0">
       <widget class="QLineEdit" name="inputBox7">
        <property name="text">
-        <string/>
+        <string>0</string>
        </property>
       </widget>
      </item>
      <item row="1" column="0">
       <widget class="QLineEdit" name="inputBox4">
        <property name="text">
-        <string/>
+        <string>0</string>
        </property>
       </widget>
      </item>
      <item row="1" column="2">
       <widget class="QLineEdit" name="inputBox6">
        <property name="text">
-        <string/>
+        <string>0</string>
        </property>
       </widget>
      </item>
      <item row="0" column="2">
       <widget class="QLineEdit" name="inputBox3">
        <property name="text">
-        <string/>
+        <string>0</string>
        </property>
       </widget>
      </item>
      <item row="2" column="2">
       <widget class="QLineEdit" name="inputBox9">
        <property name="text">
-        <string/>
+        <string>0</string>
        </property>
       </widget>
      </item>

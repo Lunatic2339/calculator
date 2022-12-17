@@ -98,36 +98,5 @@ public:
 
 };
 
-std::vector<fraction> string_to_fraction(std::vector<std::string> s_v)
-{
-    std::vector<fraction> result;
-    fraction f_temp(0,1);
-    std::stringstream ss;
-    std::stringstream ssInt;
-    std::stringstream ssInt2;
-    std::string temp;
-    int n_temp;
-    int d_temp;
-    std::vector<std::string> v_temp;
-    for (int i = 0; i < s_v.size(); ++i)
-    {
-       ss.str(s_v[i]);
-       while (std::getline(ss, temp, '/'))
-       {
-          v_temp.push_back(temp);
-       }
-       ssInt.str(v_temp[0]);
-       ssInt >> n_temp;
-       f_temp.set(n_temp, 1);
-       if(v_temp.size() == 2)
-       {
-          ssInt2.str(v_temp[1]);
-          ssInt2 >> d_temp;
-          f_temp.set(n_temp, d_temp);
-       }
-       result.push_back(f_temp);
-       v_temp.clear();
-       f_temp.set(0, 1);
-    }
-    return result;
-}
+
+
