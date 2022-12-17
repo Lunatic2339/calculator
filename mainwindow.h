@@ -23,7 +23,12 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_clicked();
+    void on_inverseButton1_clicked();
+    void on_plusButton_clicked();
+    void on_minusButton_clicked();
+    void on_mulButton_clicked();
+    void on_inverseButton2_clicked();
+
 
 private:
     Ui::MainWindow *ui;
