@@ -45,7 +45,8 @@ matrix::matrix(VF vf, int row, int col)
 		{
 			for (int j = 0; j < col; ++j)
 			{
-				m_v[i][j] = vf[idx++];
+                m_v[i][j] = vf[idx];
+                idx++;
 			}
 		}
 	}
@@ -252,7 +253,7 @@ fraction matrix::det()
 	catch (int zero)
 	{
 		std::cout << "Not Square Matrix!" << std::endl;
-		return 0;
+        return 0;
 	}
 }
 

@@ -14,22 +14,18 @@ std::vector<fraction> string_to_fraction(std::vector<std::string> s_v)
     std::vector<std::string> s_temp_v;
     fraction f_temp;
     std::vector<fraction> result;
-    for(int i = 0; i < s_v.size(); ++i)
+    for (int i = 0; i < s_v.size(); ++i)
     {
-        ss.str(s_v[i]);
-        while(std::getline(ss, s_temp, '/'))
+        f_temp.setNum(std::stoi(s_v[i]));
+        while (std::getline(ss, s_temp, '/'))
         {
             s_temp_v.push_back(s_temp);
         }
-        f_temp.setNum(std::stoi(s_temp_v[0]));
-        if(s_temp_v.size()==2)
-        {
-            f_temp.setDenom(std::stoi(s_temp_v[1]));
-        }
+        if (s_temp_v.size() == 2) f_temp.setDenom(std::stoi(s_temp_v[1]));
         result.push_back(f_temp);
-        s_temp_v.clear();
-        f_temp.set(0,1);
+        f_temp.set(0, 1);
     }
+    return result;
 }
 std::vector<std::string> fraction_to_string(std::vector<fraction> f_v)
 {
@@ -37,11 +33,11 @@ std::vector<std::string> fraction_to_string(std::vector<fraction> f_v)
     for(int i = 0; i < f_v.size(); ++i)
     {
         if(f_v[i].denom() * f_v[i].num() < 0) s_v[i].push_back('-');
-        s_v[i] = s_v[i] + std::to_string(f_v[i].num());
+        s_v[i] = s_v[i] + std::to_string(std::abs(f_v[i].num()));
         if(f_v[i].denom() != 1)
         {
             s_v[i].push_back('/');
-            s_v[i] = s_v[i] + std::to_string(f_v[i].denom());
+            s_v[i] = s_v[i] + std::to_string(std::abs(f_v[i].denom()));
         }
     }
     return s_v;
@@ -64,7 +60,7 @@ void MainWindow::on_pushButton_clicked()
     std::vector<fraction> f_vector;
     std::vector<fraction> f_vector2;
 
-    std::vector<std::string> s_vector(9, "0");
+    std::vector<std::string> s_vector(9);
     std::vector<std::string> s_vector2;
 
     s_vector[0] = ui->inputBox1->displayText().toStdString();
@@ -80,13 +76,14 @@ void MainWindow::on_pushButton_clicked()
 
 
     f_vector = string_to_fraction(s_vector);
+
     matrix a(f_vector, 3, 3);
-    /*
+    std::cout << a.det();
     a = a.inverse();
-    /*
+
     f_vector2 = a.matrix_to_vector();
     s_vector2 = fraction_to_string(f_vector2);
-    /*
+
     ui->resultBox1->setText(QString::fromStdString(s_vector2[0]));
     ui->resultBox2->setText(QString::fromStdString(s_vector2[1]));
     ui->resultBox3->setText(QString::fromStdString(s_vector2[2]));
@@ -96,6 +93,5 @@ void MainWindow::on_pushButton_clicked()
     ui->resultBox7->setText(QString::fromStdString(s_vector2[6]));
     ui->resultBox8->setText(QString::fromStdString(s_vector2[7]));
     ui->resultBox9->setText(QString::fromStdString(s_vector2[8]));
-    */
 
 }

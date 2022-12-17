@@ -16,7 +16,6 @@ SOURCES += \
 
 HEADERS += \
     fraction.h \
-    func.h \
     func_matrix.h \
     mainwindow.h \
     matrix.h
