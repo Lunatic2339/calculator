@@ -1,11 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "matrix.h"
-#include "fraction.h"
-
-#include <iostream>
-#include <sstream>
-#include <string>
+#include <QtCore>
+#include <QtGui>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -20,9 +16,9 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::on_pushButton_clicked(){
-    std::vector<fraction> b[9];
-    matrix a = (b, 3, 3);
-    int b[0] = ui->lineEdit->displayText().toInt();
+    std::vector<fraction> b(9, 0);
+    matrix a(b, 3, 3);
+    std::string b[0] = ui->lineEdit->displayText();
 
-    std::cout << a.power(b[0]);
+    ui->lineEdit_2->setText(b[0]);
 }
