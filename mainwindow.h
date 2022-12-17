@@ -3,6 +3,13 @@
 
 #include <QMainWindow>
 
+#include "matrix.h"
+#include "fraction.h"
+
+#include <iostream>
+#include <sstream>
+#include <string>
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE

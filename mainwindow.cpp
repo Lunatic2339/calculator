@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "matrix.h"
-#include "fraction.h"
+#include <QtCore>
+#include <QtGui>
 
 #include <iostream>
 #include <sstream>
