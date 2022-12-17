@@ -20,6 +20,6 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    QString b[0];
+    std::vector<std::string> s_vector;
 };
 #endif // MAINWINDOW_H

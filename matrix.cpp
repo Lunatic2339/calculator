@@ -33,7 +33,7 @@ matrix::matrix(int rowcol, fraction fr, bool idt)
 	}
 }
 
-matrix::matrix(std::vector<fraction> vf, int row, int col)
+matrix::matrix(VF vf, int row, int col)
 	: m_v(VVF(row, VF(col))), row(row), col(col)
 {
 	
@@ -51,7 +51,7 @@ matrix::matrix(std::vector<fraction> vf, int row, int col)
 	}
 }
 
-void matrix::set_by_vector(std::vector<fraction> vf, int r, int c)
+void matrix::set_by_vector(VF vf, int r, int c)
 {
 	m_v.resize(r);
 	for (VF& v : m_v)
@@ -74,6 +74,19 @@ void matrix::set_by_vector(std::vector<fraction> vf, int r, int c)
 			}
 		}
 	}
+}
+
+VF matrix::matrix_to_vector()
+{
+	VF v_f;
+	for (VF vf : m_v)
+	{
+		for (fraction f : vf)
+		{
+			v_f.push_back(f);
+		}
+	}
+	return v_f;
 }
 
 matrix matrix::power(int n)
@@ -514,7 +527,7 @@ std::ostream& operator<<(std::ostream& os, const matrix& m)
 	return os;
 }
 
-std::ostream& operator<<(std::ostream& os, const std::pair<matrix, matrix>& pmm)
+std::ostream& operator<<(std::ostream& os, const PMM& pmm)
 {
 	os << "Lower matrix below" << std::endl;
 	os << pmm.first;
