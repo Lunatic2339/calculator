@@ -23,11 +23,11 @@ public:
 	matrix(int row, int col, fraction num[]);
 	matrix(int rowcol, int n, bool idt);
 	matrix(int rowcol, fraction fr, bool idt);
-	matrix(std::vector<fraction> vf, int row, int col);
+	matrix(VF vf, int row, int col);
 
 
-	void set_by_vector(std::vector<fraction> vf, int row, int col);
-
+	void set_by_vector(VF vf, int row, int col);
+	VF matrix_to_vector();
 
 	//Á¦°ö
 	matrix power(int n);
@@ -65,7 +65,7 @@ public:
 	matrix operator/(fraction fr);
 
 	friend std::ostream& operator<<(std::ostream& os, const matrix& m);
-	friend std::ostream& operator<<(std::ostream& os, const std::pair<matrix, matrix>& pmm);
+	friend std::ostream& operator<<(std::ostream& os, const PMM& pmm);
 
 	friend std::istream& operator>>(std::istream& is, matrix& m);
 

@@ -5,6 +5,8 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include "fraction.h"
+
 
 class func
 {
@@ -19,6 +21,7 @@ public:
 		{
 			iv.resize(6);
 		}
+
 	}
 
 	void dif(char c)
@@ -34,48 +37,36 @@ public:
 					f_v[i - 1] = f_v[i];
 				}
 			}
-			f_v[5] = std::vector<int>(6, 0);
-		}
-		if (c == 'y')
-		{
-			for (int i = 1; i < f_v.size(); ++i)
-			{
-				for (int j = 1; j < f_v[i].size(); ++j)
-				{
-					f_v[i][j - 1] = f_v[i][j] * j;
-				}
-			}
-			for (int i = 0; i < f_v.size(); ++i)
-			{
-				f_v[i][5] = 0;
-			}
-		}
-	}
+            {
+                f_v[i][5] = 0;
+            }
+        }
+    }
 
-	friend std::ostream& operator<<(std::ostream& os, const func& fx)
-	{
-		for (int i = fx.f_v.size() - 1; i >= 0; --i)
-		{
-			for (int j = fx.f_v[i].size() - 1; j >= 0; --j)
-			{
-				if (fx.f_v[i][j] != 0)
-				{
-					os << fx.f_v[i][j];
-					if (i != 0)
-					{
-						os << 'x';
-						if (i != 1) os << '^' << i;
-						if (j != 0) os << '*';
-					}
-					if (j != 0)
-					{
-						os << 'y';
-						if (j != 1) os << '^' << j;
-					}
-				}
-			}
-		}
-	}
+    friend std::ostream& operator<<(std::ostream& os, const func& fx)
+    {
+        for (int i = fx.f_v.size() - 1; i >= 0; --i)
+        {
+            for (int j = fx.f_v[i].size() - 1; j >= 0; --j)
+            {
+                if (fx.f_v[i][j] != 0)
+                {
+                    os << fx.f_v[i][j];
+                    if (i != 0)
+                    {
+                        os << 'x';
+                        if (i != 1) os << '^' << i;
+                        if (j != 0) os << '*';
+                    }
+                    if (j != 0)
+                    {
+                        os << 'y';
+                        if (j != 1) os << '^' << j;
+                    }
+                }
+            }
+        }
+    }
 	friend std::istream& operator>>(std::istream& is, func& fx)
 	{
 		std::string function;
@@ -91,8 +82,10 @@ public:
 				result.push_back(temp2);
 			}
 		}
-
+           return is;
 	}
 
 };
+
+
 

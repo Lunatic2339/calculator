@@ -1,7 +1,9 @@
 #pragma once
 
 #include <iostream>
-
+#include <vector>
+#include <string>
+#include <sstream>
 
 class fraction
 {
@@ -19,6 +21,11 @@ public:
 	fraction(int n, int d);
 	
 	void set(int n, int d);
+    void setNum(int n) { numerator = n; }
+    void setDenom(int d) { denominator = d; }
+    int num() { return numerator; }
+    int denom() { return denominator; }
+
 
 	fraction operator+(const fraction& fr);
 	fraction operator+(int i);
@@ -58,4 +65,8 @@ public:
 
 	friend std::ostream& operator<<(std::ostream& os, const fraction& fr);
 	friend std::istream& operator>>(std::istream& is, fraction& fr);
+
+
 };
+
+

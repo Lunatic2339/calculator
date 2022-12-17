@@ -12,5 +12,11 @@ using namespace std;
 
 int main()
 {
-	
+	vector<string> s;
+	s.push_back("afdadf");
+	s.push_back("asqw23");
+	s.push_back("99h332");
+
+
+
 }
