@@ -32,6 +32,8 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    std::vector<std::string> s_vector;
+    std::vector<std::string> s_vectorA;
+    std::vector<std::string> s_vectorB;
+
 };
 #endif // MAINWINDOW_H
