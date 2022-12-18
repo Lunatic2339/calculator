@@ -105,7 +105,7 @@
    <widget class="QPushButton" name="inverseButton2">
     <property name="geometry">
      <rect>
-      <x>510</x>
+      <x>640</x>
       <y>190</y>
       <width>75</width>
       <height>24</height>
@@ -118,8 +118,8 @@
    <widget class="QWidget" name="gridLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>260</y>
+      <x>320</x>
+      <y>240</y>
       <width>211</width>
       <height>151</height>
      </rect>
@@ -307,9 +307,35 @@
    <widget class="QLineEdit" name="inputBox7_3">
     <property name="geometry">
      <rect>
-      <x>550</x>
-      <y>320</y>
+      <x>300</x>
+      <y>410</y>
       <width>271</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="resultBox1_2">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>290</y>
+      <width>65</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="resultBox1_3">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>300</y>
+      <width>65</width>
       <height>28</height>
      </rect>
     </property>
