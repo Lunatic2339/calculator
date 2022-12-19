@@ -27,7 +27,8 @@ std::vector<std::vector<int>> function_input(std::string input)
 	if (split_vector.size() == 0) split_vector.push_back(input);
 	for (std::string s : split_vector)
 	{
-		int c = std::stoi(s);
+		int c = 1;
+		c = std::stoi(s);
 		int x = 0;
 		int y = 0;
 		for (int i = 0; i < s.size(); ++i)
@@ -140,12 +141,26 @@ std::vector<std::vector<int>> dif(std::vector<std::vector<int>> vv, char c)
 	}
 	return vv;
 }
+std::vector<std::vector<std::vector<int>>> grad(std::vector<std::vector<int>> vvi);
 
 
 int main()
 {
 	std::string input;
 	cin >> input;
-	std::vector<std::vector<int>> aa = function_input(input);
-	cout << function_string(dif(aa, 'x'));
+	//std::vector<std::vector<int>> aa = function_input(input);
+	//for (vector<int> vv : aa)
+	{
+	//	for (int i : vv) cout << i;
+	//	cout << endl;
+	}
+	int c;
+	try {
+		c = stoi("wadf");
+	}
+	catch(const exception& e)
+	{
+		c = 1;
+	}
+	cout << c;
 }
