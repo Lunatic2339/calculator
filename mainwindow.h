@@ -36,11 +36,16 @@ private slots:
     void on_trButton2_clicked();
     void on_adjButton1_clicked();
     void on_adjButton2_clicked();
+    void on_insertLeft_clicked();
+    void on_insertRight_clicked();
+    void on_clearButton1_clicked();
+    void on_clearButton2_clicked();
+    void on_gradButton1_clicked();
 
 private:
     Ui::MainWindow *ui;
     std::vector<std::string> s_vectorA;
     std::vector<std::string> s_vectorB;
-
+    std::string funcA;
 };
 #endif // MAINWINDOW_H
