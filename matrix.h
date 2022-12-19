@@ -43,6 +43,8 @@ public:
 	PMM LUdecompose();
 
 
+
+
 	//행렬식
 	fraction det();
 	//여인수
@@ -63,11 +65,9 @@ public:
 	matrix operator*(fraction fr);
 	matrix operator/(int k);
 	matrix operator/(fraction fr);
-
 	friend std::ostream& operator<<(std::ostream& os, const matrix& m);
 	friend std::ostream& operator<<(std::ostream& os, const PMM& pmm);
 
 	friend std::istream& operator>>(std::istream& is, matrix& m);
 
 };
-
