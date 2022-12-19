@@ -308,3 +308,297 @@ void MainWindow::on_mulButton_clicked(){
     ui->resultBox8->setText(QString::fromStdString(s_vector3[7]));
     ui->resultBox9->setText(QString::fromStdString(s_vector3[8]));
 }
+void MainWindow::on_powerButton1_clicked(){
+    std::vector<fraction> f_vectorA;
+    std::vector<fraction> f_vectorA2;
+
+    std::vector<std::string> s_vectorA(9, "");
+    std::vector<std::string> s_vectorA2;
+
+    s_vectorA[0] = ui->inputBox1->displayText().toStdString();
+    s_vectorA[1] = ui->inputBox2->displayText().toStdString();
+    s_vectorA[2] = ui->inputBox3->displayText().toStdString();
+    s_vectorA[3] = ui->inputBox4->displayText().toStdString();
+    s_vectorA[4] = ui->inputBox5->displayText().toStdString();
+    s_vectorA[5] = ui->inputBox6->displayText().toStdString();
+    s_vectorA[6] = ui->inputBox7->displayText().toStdString();
+    s_vectorA[7] = ui->inputBox8->displayText().toStdString();
+    s_vectorA[8] = ui->inputBox9->displayText().toStdString();
+
+
+    f_vectorA = string_to_fraction(s_vectorA);
+
+    matrix a(f_vectorA, 3, 3);
+    a = a.power(ui->powerInput1->displayText().toInt());
+
+    f_vectorA2 = a.matrix_to_vector();
+    s_vectorA2 = fraction_to_string(f_vectorA2);
+
+    ui->resultBox1->setText(QString::fromStdString(s_vectorA2[0]));
+    ui->resultBox2->setText(QString::fromStdString(s_vectorA2[1]));
+    ui->resultBox3->setText(QString::fromStdString(s_vectorA2[2]));
+    ui->resultBox4->setText(QString::fromStdString(s_vectorA2[3]));
+    ui->resultBox5->setText(QString::fromStdString(s_vectorA2[4]));
+    ui->resultBox6->setText(QString::fromStdString(s_vectorA2[5]));
+    ui->resultBox7->setText(QString::fromStdString(s_vectorA2[6]));
+    ui->resultBox8->setText(QString::fromStdString(s_vectorA2[7]));
+    ui->resultBox9->setText(QString::fromStdString(s_vectorA2[8]));
+}
+void MainWindow::on_powerButton2_clicked(){
+    std::vector<fraction> f_vectorB;
+    std::vector<fraction> f_vectorB2;
+
+    std::vector<std::string> s_vectorB(9, "");
+    std::vector<std::string> s_vectorB2;
+
+    s_vectorB[0] = ui->inputBox1_2->displayText().toStdString();
+    s_vectorB[1] = ui->inputBox2_2->displayText().toStdString();
+    s_vectorB[2] = ui->inputBox3_2->displayText().toStdString();
+    s_vectorB[3] = ui->inputBox4_2->displayText().toStdString();
+    s_vectorB[4] = ui->inputBox5_2->displayText().toStdString();
+    s_vectorB[5] = ui->inputBox6_2->displayText().toStdString();
+    s_vectorB[6] = ui->inputBox7_2->displayText().toStdString();
+    s_vectorB[7] = ui->inputBox8_2->displayText().toStdString();
+    s_vectorB[8] = ui->inputBox9_2->displayText().toStdString();
+
+
+    f_vectorB = string_to_fraction(s_vectorB);
+
+    matrix b(f_vectorB, 3, 3);
+    b = b.power(ui->powerInput2->displayText().toInt());
+
+    f_vectorB2 = b.matrix_to_vector();
+    s_vectorB2 = fraction_to_string(f_vectorB2);
+
+    ui->resultBox1->setText(QString::fromStdString(s_vectorB2[0]));
+    ui->resultBox2->setText(QString::fromStdString(s_vectorB2[1]));
+    ui->resultBox3->setText(QString::fromStdString(s_vectorB2[2]));
+    ui->resultBox4->setText(QString::fromStdString(s_vectorB2[3]));
+    ui->resultBox5->setText(QString::fromStdString(s_vectorB2[4]));
+    ui->resultBox6->setText(QString::fromStdString(s_vectorB2[5]));
+    ui->resultBox7->setText(QString::fromStdString(s_vectorB2[6]));
+    ui->resultBox8->setText(QString::fromStdString(s_vectorB2[7]));
+    ui->resultBox9->setText(QString::fromStdString(s_vectorB2[8]));
+}
+
+void MainWindow::on_echButton1_clicked(){
+    std::vector<fraction> f_vectorA;
+    std::vector<fraction> f_vectorA2;
+
+    std::vector<std::string> s_vectorA(9, "");
+    std::vector<std::string> s_vectorA2;
+
+    s_vectorA[0] = ui->inputBox1->displayText().toStdString();
+    s_vectorA[1] = ui->inputBox2->displayText().toStdString();
+    s_vectorA[2] = ui->inputBox3->displayText().toStdString();
+    s_vectorA[3] = ui->inputBox4->displayText().toStdString();
+    s_vectorA[4] = ui->inputBox5->displayText().toStdString();
+    s_vectorA[5] = ui->inputBox6->displayText().toStdString();
+    s_vectorA[6] = ui->inputBox7->displayText().toStdString();
+    s_vectorA[7] = ui->inputBox8->displayText().toStdString();
+    s_vectorA[8] = ui->inputBox9->displayText().toStdString();
+
+
+    f_vectorA = string_to_fraction(s_vectorA);
+
+    matrix a(f_vectorA, 3, 3);
+    a = a.echelon();
+
+    f_vectorA2 = a.matrix_to_vector();
+    s_vectorA2 = fraction_to_string(f_vectorA2);
+
+    ui->resultBox1->setText(QString::fromStdString(s_vectorA2[0]));
+    ui->resultBox2->setText(QString::fromStdString(s_vectorA2[1]));
+    ui->resultBox3->setText(QString::fromStdString(s_vectorA2[2]));
+    ui->resultBox4->setText(QString::fromStdString(s_vectorA2[3]));
+    ui->resultBox5->setText(QString::fromStdString(s_vectorA2[4]));
+    ui->resultBox6->setText(QString::fromStdString(s_vectorA2[5]));
+    ui->resultBox7->setText(QString::fromStdString(s_vectorA2[6]));
+    ui->resultBox8->setText(QString::fromStdString(s_vectorA2[7]));
+    ui->resultBox9->setText(QString::fromStdString(s_vectorA2[8]));
+}
+
+void MainWindow::on_echButton2_clicked(){
+    std::vector<fraction> f_vectorB;
+    std::vector<fraction> f_vectorB2;
+
+    std::vector<std::string> s_vectorB(9, "");
+    std::vector<std::string> s_vectorB2;
+
+    s_vectorB[0] = ui->inputBox1_2->displayText().toStdString();
+    s_vectorB[1] = ui->inputBox2_2->displayText().toStdString();
+    s_vectorB[2] = ui->inputBox3_2->displayText().toStdString();
+    s_vectorB[3] = ui->inputBox4_2->displayText().toStdString();
+    s_vectorB[4] = ui->inputBox5_2->displayText().toStdString();
+    s_vectorB[5] = ui->inputBox6_2->displayText().toStdString();
+    s_vectorB[6] = ui->inputBox7_2->displayText().toStdString();
+    s_vectorB[7] = ui->inputBox8_2->displayText().toStdString();
+    s_vectorB[8] = ui->inputBox9_2->displayText().toStdString();
+
+
+    f_vectorB = string_to_fraction(s_vectorB);
+
+    matrix b(f_vectorB, 3, 3);
+    b = b.echelon();
+
+    f_vectorB2 = b.matrix_to_vector();
+    s_vectorB2 = fraction_to_string(f_vectorB2);
+
+    ui->resultBox1->setText(QString::fromStdString(s_vectorB2[0]));
+    ui->resultBox2->setText(QString::fromStdString(s_vectorB2[1]));
+    ui->resultBox3->setText(QString::fromStdString(s_vectorB2[2]));
+    ui->resultBox4->setText(QString::fromStdString(s_vectorB2[3]));
+    ui->resultBox5->setText(QString::fromStdString(s_vectorB2[4]));
+    ui->resultBox6->setText(QString::fromStdString(s_vectorB2[5]));
+    ui->resultBox7->setText(QString::fromStdString(s_vectorB2[6]));
+    ui->resultBox8->setText(QString::fromStdString(s_vectorB2[7]));
+    ui->resultBox9->setText(QString::fromStdString(s_vectorB2[8]));
+}
+
+void MainWindow::on_trButton1_clicked(){
+    std::vector<fraction> f_vectorA;
+    std::vector<fraction> f_vectorA2;
+
+    std::vector<std::string> s_vectorA(9, "");
+    std::vector<std::string> s_vectorA2;
+
+    s_vectorA[0] = ui->inputBox1->displayText().toStdString();
+    s_vectorA[1] = ui->inputBox2->displayText().toStdString();
+    s_vectorA[2] = ui->inputBox3->displayText().toStdString();
+    s_vectorA[3] = ui->inputBox4->displayText().toStdString();
+    s_vectorA[4] = ui->inputBox5->displayText().toStdString();
+    s_vectorA[5] = ui->inputBox6->displayText().toStdString();
+    s_vectorA[6] = ui->inputBox7->displayText().toStdString();
+    s_vectorA[7] = ui->inputBox8->displayText().toStdString();
+    s_vectorA[8] = ui->inputBox9->displayText().toStdString();
+
+
+    f_vectorA = string_to_fraction(s_vectorA);
+
+    matrix a(f_vectorA, 3, 3);
+    a = a.tr();
+
+    f_vectorA2 = a.matrix_to_vector();
+    s_vectorA2 = fraction_to_string(f_vectorA2);
+
+    ui->resultBox1->setText(QString::fromStdString(s_vectorA2[0]));
+    ui->resultBox2->setText(QString::fromStdString(s_vectorA2[1]));
+    ui->resultBox3->setText(QString::fromStdString(s_vectorA2[2]));
+    ui->resultBox4->setText(QString::fromStdString(s_vectorA2[3]));
+    ui->resultBox5->setText(QString::fromStdString(s_vectorA2[4]));
+    ui->resultBox6->setText(QString::fromStdString(s_vectorA2[5]));
+    ui->resultBox7->setText(QString::fromStdString(s_vectorA2[6]));
+    ui->resultBox8->setText(QString::fromStdString(s_vectorA2[7]));
+    ui->resultBox9->setText(QString::fromStdString(s_vectorA2[8]));
+}
+
+void MainWindow::on_trButton2_clicked(){
+    std::vector<fraction> f_vectorB;
+    std::vector<fraction> f_vectorB2;
+
+    std::vector<std::string> s_vectorB(9, "");
+    std::vector<std::string> s_vectorB2;
+
+    s_vectorB[0] = ui->inputBox1_2->displayText().toStdString();
+    s_vectorB[1] = ui->inputBox2_2->displayText().toStdString();
+    s_vectorB[2] = ui->inputBox3_2->displayText().toStdString();
+    s_vectorB[3] = ui->inputBox4_2->displayText().toStdString();
+    s_vectorB[4] = ui->inputBox5_2->displayText().toStdString();
+    s_vectorB[5] = ui->inputBox6_2->displayText().toStdString();
+    s_vectorB[6] = ui->inputBox7_2->displayText().toStdString();
+    s_vectorB[7] = ui->inputBox8_2->displayText().toStdString();
+    s_vectorB[8] = ui->inputBox9_2->displayText().toStdString();
+
+
+    f_vectorB = string_to_fraction(s_vectorB);
+
+    matrix b(f_vectorB, 3, 3);
+    b = b.tr();
+
+    f_vectorB2 = b.matrix_to_vector();
+    s_vectorB2 = fraction_to_string(f_vectorB2);
+
+    ui->resultBox1->setText(QString::fromStdString(s_vectorB2[0]));
+    ui->resultBox2->setText(QString::fromStdString(s_vectorB2[1]));
+    ui->resultBox3->setText(QString::fromStdString(s_vectorB2[2]));
+    ui->resultBox4->setText(QString::fromStdString(s_vectorB2[3]));
+    ui->resultBox5->setText(QString::fromStdString(s_vectorB2[4]));
+    ui->resultBox6->setText(QString::fromStdString(s_vectorB2[5]));
+    ui->resultBox7->setText(QString::fromStdString(s_vectorB2[6]));
+    ui->resultBox8->setText(QString::fromStdString(s_vectorB2[7]));
+    ui->resultBox9->setText(QString::fromStdString(s_vectorB2[8]));
+}
+
+void MainWindow::on_adjButton1_clicked(){
+    std::vector<fraction> f_vectorA;
+    std::vector<fraction> f_vectorA2;
+
+    std::vector<std::string> s_vectorA(9, "");
+    std::vector<std::string> s_vectorA2;
+
+    s_vectorA[0] = ui->inputBox1->displayText().toStdString();
+    s_vectorA[1] = ui->inputBox2->displayText().toStdString();
+    s_vectorA[2] = ui->inputBox3->displayText().toStdString();
+    s_vectorA[3] = ui->inputBox4->displayText().toStdString();
+    s_vectorA[4] = ui->inputBox5->displayText().toStdString();
+    s_vectorA[5] = ui->inputBox6->displayText().toStdString();
+    s_vectorA[6] = ui->inputBox7->displayText().toStdString();
+    s_vectorA[7] = ui->inputBox8->displayText().toStdString();
+    s_vectorA[8] = ui->inputBox9->displayText().toStdString();
+
+
+    f_vectorA = string_to_fraction(s_vectorA);
+
+    matrix a(f_vectorA, 3, 3);
+    a = a.adj();
+
+    f_vectorA2 = a.matrix_to_vector();
+    s_vectorA2 = fraction_to_string(f_vectorA2);
+
+    ui->resultBox1->setText(QString::fromStdString(s_vectorA2[0]));
+    ui->resultBox2->setText(QString::fromStdString(s_vectorA2[1]));
+    ui->resultBox3->setText(QString::fromStdString(s_vectorA2[2]));
+    ui->resultBox4->setText(QString::fromStdString(s_vectorA2[3]));
+    ui->resultBox5->setText(QString::fromStdString(s_vectorA2[4]));
+    ui->resultBox6->setText(QString::fromStdString(s_vectorA2[5]));
+    ui->resultBox7->setText(QString::fromStdString(s_vectorA2[6]));
+    ui->resultBox8->setText(QString::fromStdString(s_vectorA2[7]));
+    ui->resultBox9->setText(QString::fromStdString(s_vectorA2[8]));
+}
+
+void MainWindow::on_adjButton2_clicked(){
+    std::vector<fraction> f_vectorB;
+    std::vector<fraction> f_vectorB2;
+
+    std::vector<std::string> s_vectorB(9, "");
+    std::vector<std::string> s_vectorB2;
+
+    s_vectorB[0] = ui->inputBox1_2->displayText().toStdString();
+    s_vectorB[1] = ui->inputBox2_2->displayText().toStdString();
+    s_vectorB[2] = ui->inputBox3_2->displayText().toStdString();
+    s_vectorB[3] = ui->inputBox4_2->displayText().toStdString();
+    s_vectorB[4] = ui->inputBox5_2->displayText().toStdString();
+    s_vectorB[5] = ui->inputBox6_2->displayText().toStdString();
+    s_vectorB[6] = ui->inputBox7_2->displayText().toStdString();
+    s_vectorB[7] = ui->inputBox8_2->displayText().toStdString();
+    s_vectorB[8] = ui->inputBox9_2->displayText().toStdString();
+
+
+    f_vectorB = string_to_fraction(s_vectorB);
+
+    matrix b(f_vectorB, 3, 3);
+    b = b.adj();
+
+    f_vectorB2 = b.matrix_to_vector();
+    s_vectorB2 = fraction_to_string(f_vectorB2);
+
+    ui->resultBox1->setText(QString::fromStdString(s_vectorB2[0]));
+    ui->resultBox2->setText(QString::fromStdString(s_vectorB2[1]));
+    ui->resultBox3->setText(QString::fromStdString(s_vectorB2[2]));
+    ui->resultBox4->setText(QString::fromStdString(s_vectorB2[3]));
+    ui->resultBox5->setText(QString::fromStdString(s_vectorB2[4]));
+    ui->resultBox6->setText(QString::fromStdString(s_vectorB2[5]));
+    ui->resultBox7->setText(QString::fromStdString(s_vectorB2[6]));
+    ui->resultBox8->setText(QString::fromStdString(s_vectorB2[7]));
+    ui->resultBox9->setText(QString::fromStdString(s_vectorB2[8]));
+}

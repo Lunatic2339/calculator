@@ -271,12 +271,13 @@ fraction matrix::cof(int r, int c)
 
 matrix matrix::echelon() {
 	matrix result(col, row);
+	matrix result2(col, row);
 	int new_m1 = 0;
 	int new_m2 = 0;
-	int new_m3 = 1;
 
 	fraction div = 0;
 	
+
 	for (int x = 0; x < col; x++) {
 		new_m1 = 0;
 		new_m2 = 0;
@@ -306,14 +307,102 @@ matrix matrix::echelon() {
 		}
 	}
 
+
 	for (int i = 0; i < col; i++) {
 		div = result.m_v[i][result.front(i)];
-		for (int j = 0; j < col; j++) {
+		for (int j = 0; j < row; j++) {
 			result.m_v[i][j] = result.m_v[i][j] / div;
 		}
 	}
+
+	new_m1 = 0;
+	new_m2 = 0;
+	for (int i = 0; i < col; i++) {
+		for (int j = 0; i < row; i++) {
+			if (result.m_v[i][j] == 0) {
+				for (int k = 0; k < row; k++) {
+					result2.m_v[col - new_m1 - 1][k] = result.m_v[i][k];
+				}
+				new_m1++;
+			}
+			else {
+				for (int k = 0; k < row; k++) {
+					result2.m_v[new_m2][k] = result.m_v[i][k];
+				}
+				new_m2++;
+			}
+		}
+	}
+
+	//2nd
+	for (int x = 0; x < col; x++) {
+		new_m1 = 0;
+		new_m2 = 0;
+		for (int i = x; i < col; i++) {
+			for (int j = 0; i < row; i++) {
+				if (result2.m_v[i][j] == 0) {
+					for (int k = 0; k < row; k++) {
+						result.m_v[col - new_m1 - 1][k] = result2.m_v[i][k];
+					}
+					new_m1++;
+				}
+				else {
+					for (int k = 0; k < row; k++) {
+						result.m_v[new_m2][k] = result2.m_v[i][k];
+					}
+					new_m2++;
+				}
+			}
+		}
+		for (int i = x + 1; i < col; i++) {
+			div = result.m_v[x][result.front(x)] / result.m_v[i][result.front(i)];
+			if (result.front(x) == result.front(i)) {
+				for (int j = 0; j < row; j++) {
+					result.m_v[i][j] = result.m_v[0][j] - (result.m_v[i][j] * div);
+				}
+			}
+		}
+	}
+
+
+	for (int i = 0; i < col; i++) {
+		div = result.m_v[i][result.front(i)];
+		for (int j = 0; j < row; j++) {
+			result.m_v[i][j] = result.m_v[i][j] / div;
+		}
+	}
+
+	new_m1 = 0;
+	new_m2 = 0;
+	for (int i = 0; i < col; i++) {
+		for (int j = 0; i < row; i++) {
+			if (result.m_v[i][j] == 0) {
+				for (int k = 0; k < row; k++) {
+					result2.m_v[col - new_m1 - 1][k] = result.m_v[i][k];
+				}
+				new_m1++;
+			}
+			else {
+				for (int k = 0; k < row; k++) {
+					result2.m_v[new_m2][k] = result.m_v[i][k];
+				}
+				new_m2++;
+			}
+		}
+	}
+
+	for (int i = 1; i < col; i++) {
+		for (int j = 0; j < col; j++) {
+			if ((result2.m_v[j][result2.front(i)] != 0) && (i != j)) {
+				div = result2.m_v[j][result2.front(i)] / result2.m_v[i][result2.front(i)];
+				for (int k = result2.front(i); k < row; k++) {
+					result2.m_v[j][k] = result2.m_v[j][k] - (result2.m_v[i][k] * div);
+				}
+			}
+		}
+	}
 	
-	return result;
+	return result2;
 }
 
 int matrix::front(int col) {

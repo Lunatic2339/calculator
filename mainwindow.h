@@ -28,7 +28,14 @@ private slots:
     void on_minusButton_clicked();
     void on_mulButton_clicked();
     void on_inverseButton2_clicked();
-
+    void on_powerButton1_clicked();
+    void on_powerButton2_clicked();
+    void on_echButton1_clicked();
+    void on_echButton2_clicked();
+    void on_trButton1_clicked();
+    void on_trButton2_clicked();
+    void on_adjButton1_clicked();
+    void on_adjButton2_clicked();
 
 private:
     Ui::MainWindow *ui;
