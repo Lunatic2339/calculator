@@ -292,132 +292,77 @@ matrix matrix::echelon() {
 
 	fraction div = 0;
 	
-
-	for (int x = 0; x < col; x++) {
-		new_m1 = 0;
-		new_m2 = 0;
-		for (int i = x; i < col; i++) {
-			for (int j = 0; i < row; i++) {
-				if (m_v[i][j] == 0) {
-					for (int k = 0; k < row; k++) {
-						result.m_v[col - new_m1 - 1][k] = m_v[i][k];
-					}
-					new_m1++;
-				}
-				else {
-					for (int k = 0; k < row; k++) {
-						result.m_v[new_m2][k] = m_v[i][k];
-					}
-					new_m2++;
-				}
+	
+	for (int i = 0; i < col; i++) {
+		if (m_v[i][0] != 0 && new_m1 < col) {
+			for (int j = 0; j < row; j++) {
+				result.m_v[new_m1][j] = m_v[i][j];
 			}
+			new_m1++;
 		}
-		for (int i = x+1; i < col; i++) {
-			div = result.m_v[x][result.front(x)] / result.m_v[i][result.front(i)];
-			if (result.front(x) == result.front(i)) {
+	}
+
+	if (new_m1 < col) {
+		for (int i = 0; i < col; i++) {
+			if (m_v[i][0] == 0 && m_v[i][1] != 0 && new_m1 < col) {
 				for (int j = 0; j < row; j++) {
-					result.m_v[i][j] = result.m_v[0][j] - (result.m_v[i][j] * div);
-				}
-			}
-		}
-	}
-
-
-	for (int i = 0; i < col; i++) {
-		div = result.m_v[i][result.front(i)];
-		for (int j = 0; j < row; j++) {
-			result.m_v[i][j] = result.m_v[i][j] / div;
-		}
-	}
-
-	new_m1 = 0;
-	new_m2 = 0;
-	for (int i = 0; i < col; i++) {
-		for (int j = 0; i < row; i++) {
-			if (result.m_v[i][j] == 0) {
-				for (int k = 0; k < row; k++) {
-					result2.m_v[col - new_m1 - 1][k] = result.m_v[i][k];
+					result.m_v[new_m1][j] = m_v[i][j];
 				}
 				new_m1++;
 			}
-			else {
-				for (int k = 0; k < row; k++) {
-					result2.m_v[new_m2][k] = result.m_v[i][k];
-				}
-				new_m2++;
-			}
 		}
 	}
 
-	//2nd
-	for (int x = 0; x < col; x++) {
-		new_m1 = 0;
-		new_m2 = 0;
-		for (int i = x; i < col; i++) {
-			for (int j = 0; i < row; i++) {
-				if (result2.m_v[i][j] == 0) {
-					for (int k = 0; k < row; k++) {
-						result.m_v[col - new_m1 - 1][k] = result2.m_v[i][k];
-					}
-					new_m1++;
-				}
-				else {
-					for (int k = 0; k < row; k++) {
-						result.m_v[new_m2][k] = result2.m_v[i][k];
-					}
-					new_m2++;
-				}
-			}
-		}
-		for (int i = x + 1; i < col; i++) {
-			div = result.m_v[x][result.front(x)] / result.m_v[i][result.front(i)];
-			if (result.front(x) == result.front(i)) {
+	if (new_m1 < col) {
+		for (int i = 0; i < col; i++) {
+			if (m_v[i][0] == 0 && m_v[i][1] == 0 && m_v[i][2] != 0 && new_m1 < col) {
 				for (int j = 0; j < row; j++) {
-					result.m_v[i][j] = result.m_v[0][j] - (result.m_v[i][j] * div);
-				}
-			}
-		}
-	}
-
-
-	for (int i = 0; i < col; i++) {
-		div = result.m_v[i][result.front(i)];
-		for (int j = 0; j < row; j++) {
-			result.m_v[i][j] = result.m_v[i][j] / div;
-		}
-	}
-
-	new_m1 = 0;
-	new_m2 = 0;
-	for (int i = 0; i < col; i++) {
-		for (int j = 0; i < row; i++) {
-			if (result.m_v[i][j] == 0) {
-				for (int k = 0; k < row; k++) {
-					result2.m_v[col - new_m1 - 1][k] = result.m_v[i][k];
+					result.m_v[new_m1][j] = m_v[i][j];
 				}
 				new_m1++;
-			}
-			else {
-				for (int k = 0; k < row; k++) {
-					result2.m_v[new_m2][k] = result.m_v[i][k];
-				}
-				new_m2++;
-			}
-		}
-	}
-
-	for (int i = 1; i < col; i++) {
-		for (int j = 0; j < col; j++) {
-			if ((result2.m_v[j][result2.front(i)] != 0) && (i != j)) {
-				div = result2.m_v[j][result2.front(i)] / result2.m_v[i][result2.front(i)];
-				for (int k = result2.front(i); k < row; k++) {
-					result2.m_v[j][k] = result2.m_v[j][k] - (result2.m_v[i][k] * div);
-				}
 			}
 		}
 	}
 	
-	return result2;
+	while ((result.front(1) == result.front(2)) || (result.front(0) == result.front(1))) {
+		if ((result.front(1) == result.front(2)) && (result.m_v[1][result.front(1)] != 0)) {
+			div = result.m_v[1][result.front(1)] / result.m_v[2][result.front(2)];
+			for (int i = 0; i < col; i++) {
+				result.m_v[2][i] = result.m_v[1][i] - (result.m_v[2][i] * div);
+			}
+		}
+
+		if ((result.front(0) == result.front(1)) && (result.m_v[1][result.front(1)] != 0)) {
+			div = result.m_v[0][result.front(0)] / result.m_v[1][result.front(1)];
+			for (int i = 0; i < col; i++) {
+				result.m_v[1][i] = result.m_v[0][i] - (result.m_v[1][i] * div);
+			}
+		}
+	}
+
+	
+	if ((result.m_v[0][result.front(1)] != 0) && (result.m_v[1][result.front(1)] != 0)) {
+		div = result.m_v[0][result.front(1)] / result.m_v[1][result.front(1)];
+		for (int j = 0; j < row; j++) {
+			result.m_v[0][j] = result.m_v[0][j] - (result.m_v[1][j] * div);
+		}
+	}
+	if ((result.m_v[1][result.front(2)] != 0) && (result.m_v[2][result.front(2)] != 0)) {
+		div = result.m_v[1][result.front(2)] / result.m_v[2][result.front(2)];
+		for (int j = 0; j < row; j++) {
+			result.m_v[0][j] = result.m_v[0][j] - (result.m_v[1][j] * div);
+		}
+	}
+
+
+
+	for (int i = 0; i < col; i++) {
+		for (int j = 0; j < row; j++) {
+			result.m_v[i][j] = result.m_v[i][j] / result.m_v[i][result.front(i)];
+		}
+	}
+	
+	return result;
 }
 
 int matrix::front(int col) {
