@@ -52,6 +52,21 @@ matrix::matrix(VF vf, int row, int col)
 	}
 }
 
+void matrix::set_rowcol(int r, int c, int num)
+{
+	row = r;
+	col = c;
+	m_v.resize(row);
+	for (VF& vf : m_v)
+	{
+		vf.resize(col);
+		for (fraction& f : vf)
+		{
+			f = num;
+		}
+	}
+}
+
 void matrix::set_by_vector(VF vf, int r, int c)
 {
 	m_v.resize(r);

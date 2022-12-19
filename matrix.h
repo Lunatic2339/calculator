@@ -25,7 +25,7 @@ public:
 	matrix(int rowcol, fraction fr, bool idt);
 	matrix(VF vf, int row, int col);
 
-
+	void set_rowcol(int row, int col, int num = 0);
 	void set_by_vector(VF vf, int row, int col);
 	VF matrix_to_vector();
 

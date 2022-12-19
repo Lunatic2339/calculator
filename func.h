@@ -6,17 +6,17 @@
 #include <string>
 #include <sstream>
 #include "fraction.h"
-
+#include "matrix.h"
 
 class func
 {
 private:
-	std::vector<std::vector<int>> f_v;
+	matrix m;
 
 public:
 	func()
 	{
-		f_v.resize(6);
+		m
 		for (std::vector<int>& iv : f_v)
 		{
 			iv.resize(6);
@@ -37,6 +37,7 @@ public:
 					f_v[i - 1] = f_v[i];
 				}
 			}
+			f_v
 
         }
     }
