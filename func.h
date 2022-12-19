@@ -37,7 +37,6 @@ public:
 					f_v[i - 1] = f_v[i];
 				}
 			}
-			f_v
 
         }
     }
