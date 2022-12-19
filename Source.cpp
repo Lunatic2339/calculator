@@ -73,7 +73,7 @@ std::string function_string(std::vector<std::vector<int>> func)
 	int dummy = 0;
 	for (int i = func.size() - 1; i >= 0; --i)
 	{
-		for (int j = func[i].size(); j >= 0; --j)
+		for (int j = func[i].size()-1; j >= 0; --j)
 		{
 			if (func[i][j] != 0)
 			{
@@ -108,15 +108,44 @@ std::string function_string(std::vector<std::vector<int>> func)
 	}
 	return result;
 }
+std::vector<std::vector<int>> dif(std::vector<std::vector<int>> vv, char c)
+{
+	if (c == 'x')
+	{
+		for (int i = 1; i < vv.size(); ++i)
+		{
+			for (int& j : vv[i])
+			{
+				j = j * i;
+			}
+			vv[i - 1] = vv[i];
+		}
+		vv[5] = std::vector<int>(6, 0);
+	}
+	if (c == 'y')
+	{
+		for (int i = 1; i < vv.size(); ++i)
+		{
+			for (int j = 0; j < vv[i].size(); ++j)
+			{
+				vv[j][i] = vv[j][i] * i;
+				vv[j][i - 1] = vv[j][i];
+			}
+			
+		}
+		for (int i = 0; i < vv.size(); ++i)
+		{
+			vv[i][5] = 0;
+		}
+	}
+	return vv;
+}
+
 
 int main()
 {
 	std::string input;
 	cin >> input;
 	std::vector<std::vector<int>> aa = function_input(input);
-	for (std::vector<int> a : aa)
-	{
-		for (int i : a) cout << i;
-		cout << endl;
-	}
+	cout << function_string(dif(aa, 'x'));
 }
